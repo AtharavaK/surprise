@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Super Sister! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3em;
+            margin: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 223, 0, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            max-width: 90%;
+            margin: 1.5rem auto;
+            transform: scale(0);
+            animation: popIn 1s ease-out forwards;
+        }
+
+        p {
+            color: #fff;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4081;
+            animation: heartFloat 3s linear forwards;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes heartFloat {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            animation: balloonFloat 8s ease-in infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 0;
+        }
+
+        .balloon:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes balloonFloat {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: firework 1.5s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes firework {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(30); opacity: 0; }
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6c5ce7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cake {
+            font-size: 2em;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            z-index: 1;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .animated-photo1, .animated-photo2 {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            animation: fadeInFloat 1.5s ease-out forwards;
+            animation-delay: calc(var(--i) * 0.3s);
+        }
+
+        @keyframes fadeInFloat {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .hover-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .hover-video:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Media Queries for larger screens */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4em;
+            }
+
+            .message {
+                max-width: 600px;
+                padding: 2rem;
+            }
+
+            p {
+                font-size: 1.5em;
+            }
+
+            .animated-photo1 {
+                max-width: 485px;
+                height: auto;
+            }
+
+            .animated-photo2 {
+                max-width: 662px;
+                height: auto;
+            }
+
+            .video-wrapper {
+                max-width: 720px;
+                height: auto;
+            }
+
+            .cake {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Hearts -->
+    <div class="hearts"></div>
+
+    <!-- Background Music -->
+    <audio id="background-music" style="display: none;">
+        <source src="happy-birthday.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Photo Gallery -->
+    <div class="photo-gallery">
+        <img src="photo1.jpg" alt="Memory 1" class="animated-photo animated-photo1">
+        <img src="photo2.jpg" alt="Memory 2" class="animated-photo animated-photo2">
+    </div>
+
+    <!-- Message Section -->
+    <div class="container">
+        <h1 class="gradient-text">Happy Birthday, My Amazing Sister!</h1>
+        <div class="message">
+            <p>To the world's best sister,</p>
+            <p>On your special day, I wish you endless joy, incredible adventures, and all the happiness you deserve! 🎉</p>
+            <p>Thank you for always being my support system. You're simply the BEST! 💖</p>
+            <p>I want u to be there with you as long as we can. Stay happy be blessed.</p>
+            <p>Kaku la mazyakadun <b>Namakskar</b> mhan. Party pahije mala!!</p>
+            <p>COMING SOON</p>
+            <p>Once Again Happy Birthday to you Enjoy your day</p>
+            <p class="cake">🎂 🎈 🎁</p>
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-wrapper">
+        <video class="hover-video" muted loop preload="metadata" poster="video-cover.jpg">
+            <source src="birthday-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const audio = document.getElementById('background-music');
+        window.addEventListener('load', () => {
+            audio.play().catch(() => {
+                document.body.addEventListener('click', autoStartAudio, { once: true });
+            });
+        });
+
+        function autoStartAudio() {
+            audio.play();
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            balloon.style.animationDuration = Math.random() * 6 + 4 + 's';
+            balloon.addEventListener('click', () => {
+                createFirework(balloon.getBoundingClientRect());
+                balloon.remove();
+            });
+            document.body.appendChild(balloon);
+            setTimeout(() => balloon.remove(), 8000);
+        }
+
+        function createFirework(pos) {
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = pos.left + 'px';
+                firework.style.top = pos.top + 'px';
+                firework.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 1500);
+            }
+        }
+
+        document.querySelectorAll('.animated-photo').forEach((img, index) => {
+            img.style.setProperty('--i', index);
+        });
+
+        setInterval(createHeart, 300);
+        setInterval(createBalloon, 1500);
+
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.createElement('div');
+            particles.className = 'firework';
+            particles.style.left = e.clientX + 'px';
+            particles.style.top = e.clientY + 'px';
+            document.body.appendChild(particles);
+            setTimeout(() => particles.remove(), 500);
+        });
+
+        const video = document.querySelector('.hover-video');
+
+        video.addEventListener('mouseenter', () => {
+            video.play();
+        });
+
+        video.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0; // Reset video to start
+        });
+    </script>
+</body>
+
+</html>
