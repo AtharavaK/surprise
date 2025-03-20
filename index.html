@@ -28,8 +28,8 @@
 
         h1 {
             color: #fff;
-            font-size: 4em;
-            margin: 2rem;
+            font-size: 3em;
+            margin: 1.5rem;
             text-shadow: 0 0 15px rgba(255, 223, 0, 0.5);
             animation: float 3s ease-in-out infinite;
         }
@@ -37,19 +37,19 @@
         .message {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 15px;
-            max-width: 600px;
-            margin: 2rem auto;
+            max-width: 90%;
+            margin: 1.5rem auto;
             transform: scale(0);
             animation: popIn 1s ease-out forwards;
         }
 
         p {
             color: #fff;
-            font-size: 1.5em;
+            font-size: 1.2em;
             line-height: 1.6;
-            margin: 1rem 0;
+            margin: 0.5rem 0;
         }
 
         .hearts {
@@ -125,7 +125,7 @@
         }
 
         .cake {
-            font-size: 3em;
+            font-size: 2em;
             animation: heartbeat 1.5s ease-in-out infinite;
         }
 
@@ -142,24 +142,14 @@
             margin-top: 2rem;
             z-index: 1;
             position: relative;
+            padding: 0 1rem;
         }
 
-        .animated-photo1 {
-            width: 485px;
-            height: 828px;
-            object-fit: fill;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            animation: fadeInFloat 1.5s ease-out forwards;
-            animation-delay: calc(var(--i) * 0.3s);
-        }
-
-        .animated-photo2 {
-            width: 662px;
-            height: 865px;
-            object-fit: fill;
+        .animated-photo1, .animated-photo2 {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            object-fit: cover;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             opacity: 0;
@@ -177,14 +167,15 @@
 
         .video-wrapper {
             position: relative;
-            width: 720px;
-            height: 1280px;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
             margin: 2rem auto;
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
         }
-        
+
         .hover-video {
             width: 100%;
             height: 100%;
@@ -193,20 +184,52 @@
             cursor: pointer;
             display: block;
         }
-        
+
         .hover-video:hover {
             transform: scale(1.05);
             filter: brightness(1.1);
         }
-        
+
+        /* Media Queries for larger screens */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4em;
+            }
+
+            .message {
+                max-width: 600px;
+                padding: 2rem;
+            }
+
+            p {
+                font-size: 1.5em;
+            }
+
+            .animated-photo1 {
+                max-width: 485px;
+                height: auto;
+            }
+
+            .animated-photo2 {
+                max-width: 662px;
+                height: auto;
+            }
+
+            .video-wrapper {
+                max-width: 720px;
+                height: auto;
+            }
+
+            .cake {
+                font-size: 3em;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Floating Hearts -->
-    <div class="hearts">
-
-    </div>
+    <div class="hearts"></div>
 
     <!-- Background Music -->
     <audio id="background-music" style="display: none;">
@@ -317,7 +340,7 @@
         video.addEventListener('mouseleave', () => {
             video.pause();
             video.currentTime = 0; // Reset video to start
-    });
+        });
     </script>
 </body>
 
